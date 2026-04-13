@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isEmployee() {
+      return request.auth != null
+        && request.auth.token.firebase.sign_in_provider != "anonymous"
+        && request.auth.token.email == "ethagemployee@gmail.com";
+    }
+
+    function isAnonymousClient() {
+      return request.auth != null
+        && request.auth.token.firebase.sign_in_provider == "anonymous";
+    }
+
+    match /customers/{customerId} {
+      allow read, list: if isEmployee();
+
+      allow create: if isAnonymousClient()
+        && request.resource.data.keys().hasOnly([
+          'name', 'idNumber', 'qualificationLevel', 'createdAt', 'createdByUid', 'filesCount'
+        ])
+        && request.resource.data.createdByUid == request.auth.uid;
+
+      allow update, delete: if false;
+
+      match /files/{fileId} {
+        allow read, list: if isEmployee();
+        allow create: if isAnonymousClient()
+          && request.resource.data.keys().hasOnly([
+            'fileName', 'fileType', 'mimeType', 'size', 'storagePath', 'uploadedAt', 'uploadedByUid'
+          ])
+          && request.resource.data.uploadedByUid == request.auth.uid;
+        allow update, delete: if false;
+      }
+    }
+  }
+}

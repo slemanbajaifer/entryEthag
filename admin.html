@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الموظفة</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page admin-page">
+    <div class="card login-card" id="loginCard">
+      <div class="brand">إيثاق</div>
+      <h1>دخول الموظفة</h1>
+      <p class="muted">الدخول مخصص للموظفة فقط.</p>
+
+      <form id="loginForm" class="form">
+        <label>
+          <span>البريد الإلكتروني</span>
+          <input type="email" id="email" placeholder="employee@example.com" required />
+        </label>
+        <label>
+          <span>كلمة المرور</span>
+          <input type="password" id="password" required />
+        </label>
+        <button type="submit">دخول</button>
+      </form>
+      <div id="loginStatus" class="status"></div>
+    </div>
+
+    <div class="dashboard hidden" id="dashboard">
+      <div class="dashboard-top">
+        <div>
+          <div class="brand">إيثاق</div>
+          <h1>لوحة الموظفة</h1>
+          <p class="muted">عرض العملاء والملفات المرفوعة</p>
+        </div>
+        <button class="secondary-btn" id="logoutBtn">تسجيل خروج</button>
+      </div>
+
+      <div class="grid">
+        <section class="card panel">
+          <div class="panel-top">
+            <h2>العملاء</h2>
+            <input type="search" id="searchInput" placeholder="بحث بالاسم أو الهوية" />
+          </div>
+          <div id="customersList" class="folder-list"></div>
+        </section>
+
+        <section class="card panel">
+          <div class="panel-top">
+            <h2>ملفات العميل</h2>
+            <div id="selectedCustomer" class="muted">اختر عميلًا من القائمة</div>
+          </div>
+          <div id="filesList" class="file-list empty-state">لا توجد ملفات معروضة الآن</div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
