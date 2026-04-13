@@ -3,26 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>رفع ملفات العملاء</title>
+  <title>استمارة تسجيل متدرب</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page">
     <div class="card upload-card">
       <div class="brand">إيثاق</div>
-      <h1>رفع ملفات العميل</h1>
-      <p class="muted">اكتب الاسم وارفع الهوية، واختر المؤهل الدراسي، ويمكنك إرفاق شهادة المؤهل ومرفقات إضافية. لن تظهر البيانات إلا للموظفة.</p>
+      <h1>استمارة تسجيل متدرب</h1>
+      <p class="muted">
+        اكتب البيانات المطلوبة وارفع الملفات بشكل واضح، ولن تظهر البيانات إلا للموظفة.
+      </p>
 
       <form id="uploadForm" class="form">
+        <div style="font-weight:700; margin-top:8px;">البيانات الشخصية</div>
+
         <label>
-          <span>اسم العميل</span>
+          <span>اسم المتدرب رباعي</span>
           <input type="text" id="customerName" placeholder="مثال: سليمان باجعيفر" required />
         </label>
 
         <label>
-          <span>رقم الهوية أو رقم الطلب</span>
+          <span>رقم الهوية أو الإقامة للمتدرب</span>
           <input type="text" id="customerIdNumber" placeholder="اختياري" />
         </label>
+
+        <label>
+          <span>رقم الجوال</span>
+          <input type="tel" id="phoneNumber" placeholder="05XXXXXXXX" />
+        </label>
+
+        <label>
+          <span>البريد الإلكتروني</span>
+          <input type="email" id="emailAddress" placeholder="example@email.com" />
+        </label>
+
+        <label>
+          <span>تاريخ الميلاد</span>
+          <input type="date" id="birthDate" />
+        </label>
+
+        <div style="font-weight:700; margin-top:12px;">البيانات التعليمية</div>
 
         <label>
           <span>المؤهل الدراسي</span>
@@ -40,18 +61,30 @@
         </label>
 
         <label>
-          <span>ملف الهوية</span>
+          <span>التخصص</span>
+          <input type="text" id="specialization" placeholder="اختياري" />
+        </label>
+
+        <div style="font-weight:700; margin-top:12px;">المرفقات</div>
+
+        <label>
+          <span>الهوية الوطنية أو الإقامة</span>
           <input type="file" id="identityFile" accept=".pdf,.jpg,.jpeg,.png" required />
         </label>
 
         <label>
-          <span>شهادة المؤهل (اختياري)</span>
+          <span>آخر مؤهل دراسي</span>
           <input type="file" id="qualificationFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" />
         </label>
 
         <label>
           <span>مرفقات إضافية</span>
           <input type="file" id="extraFiles" multiple />
+        </label>
+
+        <label style="display:flex; align-items:flex-start; gap:10px; font-weight:700;">
+          <input type="checkbox" id="declaration" style="width:auto; margin-top:4px;" required />
+          <span>إقرار بصحة المعلومات وتحمل كامل المسؤولية</span>
         </label>
 
         <button type="submit" id="submitBtn">رفع الملفات</button>
